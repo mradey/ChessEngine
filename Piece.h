@@ -1,4 +1,3 @@
-#include <string.h>
 class Piece {
     private: 
         bool isWhite;
