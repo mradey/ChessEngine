@@ -1,9 +1,9 @@
-#include "../Piece.h"
 #include <iostream>
 using namespace std;
 class King : public Piece {
     public:
-        void toString() {
-            cout << "K";
+        using Piece::Piece;
+        string toString() {
+            return "K";
         }
 };

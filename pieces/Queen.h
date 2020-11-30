@@ -1,9 +1,9 @@
-#include "../Piece.h"
-#include <iostream>
+#include <string.h>
 using namespace std;
 class Queen : public Piece {
     public:
-        void toString() {
-            cout << "Q";
+        using Piece::Piece;
+        string toString() {
+            return "Q";
         }
 };

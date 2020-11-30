@@ -1,15 +1,26 @@
+#include <string>
+using namespace std;
 class Piece {
     private: 
         bool isWhite;
         bool isOnBoard;
     public:
-        bool isWhite() {
+        Piece(bool iw) {
+            isWhite = iw;
+            isOnBoard = true;
+        }
+
+        bool getIsWhite() {
             return isWhite;
         };
         
-        bool isOnBoard() {
+        bool getIsOnBoard() {
             return isOnBoard;
         };
 
-        virtual bool canMove();
+        //virtual bool canMove();
+
+        virtual string toString() {
+            return "piece";
+        }
 };

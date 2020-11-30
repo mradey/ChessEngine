@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "TmpClass.h"
+#include "Board.h"
 using namespace std;
 
 int main()
 {
+    Board board;
+    board.toString();
     cout << endl;
 }
