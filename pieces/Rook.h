@@ -2,7 +2,7 @@
 using namespace std;
 class Rook : public Piece {
     public:
-        using Piece::Piece;
+        Rook(bool isWhite) : Piece(isWhite) {}
         string toString() {
             return "R";
         }

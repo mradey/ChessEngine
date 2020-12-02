@@ -2,7 +2,7 @@
 using namespace std;
 class Bishop : public Piece {
     public:
-        using Piece::Piece;
+        Bishop(bool isWhite) : Piece(isWhite) {}
         string toString() {
             return "B";
         }

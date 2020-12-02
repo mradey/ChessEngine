@@ -2,7 +2,7 @@
 using namespace std;
 class Queen : public Piece {
     public:
-        using Piece::Piece;
+        Queen(bool isWhite) : Piece(isWhite) {}
         string toString() {
             return "Q";
         }

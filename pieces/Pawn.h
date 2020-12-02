@@ -2,7 +2,7 @@
 using namespace std;
 class Pawn : public Piece {
     public:
-        using Piece::Piece;
+        Pawn(bool isWhite) : Piece(isWhite) {}
         string toString() {
             return "P";
         }
