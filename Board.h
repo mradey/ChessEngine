@@ -71,15 +71,29 @@ class Board {
         }
 
         string toString() {
+            string boardString;
+            for(int i = 0; i < 8; i++) {
+                string row;
+                for(int j = 0; j < 8; j++) {
+                    Square square = * board[i][j];
+                    Piece * p = square.getPiece();
+                    row.append(p != NULL ? p->toString() + "|" : "|");
+                }
+                row.append("\n");
+                boardString.append(row);
+            }
+            return boardString;
+        }
+
+        void printBoard() {
             for(int i = 0; i < 8; i++) {
                 cout << "\n---------------\n";
                 for(int j = 0; j < 8; j++) {
                     Square square = * board[i][j];
                     Piece * p = square.getPiece();
-                    if(p != NULL) cout << "|" << p->toString();
-                    else cout << "| ";
+                    if(p != NULL) cout << p->toString() << "|";
+                    else cout << " |";
                 }
             }
-            return "";
         }
 };
