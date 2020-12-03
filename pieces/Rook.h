@@ -4,6 +4,6 @@ class Rook : public Piece {
     public:
         Rook(bool isWhite) : Piece(isWhite) {}
         string toString() {
-            return "R";
+            return "Rook";
         }
 };
