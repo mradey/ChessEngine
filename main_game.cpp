@@ -7,6 +7,6 @@ using namespace std;
 int main()
 {
     Board board;
-    board.toString();
+    board.printBoard();
     cout << endl;
 }
