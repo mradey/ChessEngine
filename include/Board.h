@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 using namespace std;
+
 class Board {
     private:
         Square * board[8][8];

@@ -1,10 +1,10 @@
 #include <string>
 #include <bitset>
-#include "./Board.h"
 using namespace std;
 
 #ifndef PIECE_INCLUDED
 #define PIECE_INCLUDED
+class Board;
 class Piece {
     private: 
         bool isWhite;
@@ -49,7 +49,7 @@ class Piece {
             return "piece";
         }
         
-        virtual void findValidMoves(Board board) {}
+        virtual void findValidMoves(Board * board) {}
 
 
 };
