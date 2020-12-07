@@ -1,4 +1,6 @@
-#include "Piece.h"
+#ifndef SQUARE_INCLUDED
+#define SQUARE_INCLUDED
+class Piece;
 class Square {
     private:
         Piece * piece;
@@ -17,3 +19,5 @@ class Square {
             piece = p;
         }
 };
+
+#endif
