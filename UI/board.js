@@ -7,6 +7,7 @@ const hostname = '127.0.0.1';
 const port = 3000;
 var output = "";
 http.createServer(function (req, res) {
+    console.log(output);
     if (req.url == '/makemove') {
       var form = new formidable.IncomingForm();
       form.parse(req, function (err, fields, files) {
@@ -34,5 +35,4 @@ http.createServer(function (req, res) {
 
 ahk.stdout.on('data', function(data){
     output = data.toString();
-    console.log(output)
 });
