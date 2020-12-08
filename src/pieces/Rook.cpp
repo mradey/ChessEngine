@@ -7,5 +7,4 @@ string Rook::toString() {
     return "R";
 }
 void Rook::findValidMoves(Board * board) {
-    board->printBoard();
 }

@@ -7,5 +7,4 @@ string Bishop::toString() {
     return "B";
 }
 void Bishop::findValidMoves(Board * board) {
-    board->printBoard();
 }

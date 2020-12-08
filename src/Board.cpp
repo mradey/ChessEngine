@@ -1,5 +1,6 @@
 #include "../include/Board.h"
 #include "../include/Square.h"
+#include "../include/Move.h"
 #include "../include/allPieces.h"
 
 Board::Board() {
@@ -9,50 +10,52 @@ Board::Board() {
 void Board::resetBoard() {
     //white pieces
     bool isWhitePiece = true;
-    board[7][A] = new Square(7,A,new Rook(isWhitePiece));
-    board[7][B] = new Square(7,B,new Knight(isWhitePiece));
-    board[7][C] = new Square(7,C,new Bishop(isWhitePiece));
-    board[7][D] = new Square(7,D,new Queen(isWhitePiece));
-    board[7][E] = new Square(7,E,new King(isWhitePiece));
-    board[7][F] = new Square(7,F,new Bishop(isWhitePiece));
-    board[7][G] = new Square(7,G,new Knight(isWhitePiece));
-    board[7][H] = new Square(7,H,new Rook(isWhitePiece));
+
+    board[A][1 - ADJ] =  new Square(A,1 - ADJ,new Rook(isWhitePiece));
+    board[B][1 - ADJ] =  new Square(B,1 - ADJ,new Knight(isWhitePiece));
+    board[C][1 - ADJ] =  new Square(C,1 - ADJ,new Bishop(isWhitePiece));
+    board[D][1 - ADJ] =  new Square(D,1 - ADJ,new Queen(isWhitePiece));
+    board[E][1 - ADJ] =  new Square(E,1 - ADJ,new King(isWhitePiece));
+    board[F][1 - ADJ] =  new Square(F,1 - ADJ,new Bishop(isWhitePiece));
+    board[G][1 - ADJ] =  new Square(G,1 - ADJ,new Knight(isWhitePiece));
+    board[H][1 - ADJ] =  new Square(H,1 - ADJ,new Rook(isWhitePiece));
 
     //white pawns
-    board[6][A] = new Square(6,A,new Pawn(isWhitePiece));
-    board[6][B] = new Square(6,B,new Pawn(isWhitePiece));
-    board[6][C] = new Square(6,C,new Pawn(isWhitePiece));
-    board[6][D] = new Square(6,D,new Pawn(isWhitePiece));
-    board[6][E] = new Square(6,E,new Pawn(isWhitePiece));
-    board[6][F] = new Square(6,F,new Pawn(isWhitePiece));
-    board[6][G] = new Square(6,G,new Pawn(isWhitePiece));
-    board[6][H] = new Square(6,H,new Pawn(isWhitePiece));
+    board[A][2 - ADJ] =  new Square(A,2 - ADJ,new Pawn(isWhitePiece));
+    board[B][2 - ADJ] =  new Square(B,2 - ADJ,new Pawn(isWhitePiece));
+    board[C][2 - ADJ] =  new Square(C,2 - ADJ,new Pawn(isWhitePiece));
+    board[D][2 - ADJ] =  new Square(D,2 - ADJ,new Pawn(isWhitePiece));
+    board[E][2 - ADJ] =  new Square(E,2 - ADJ,new Pawn(isWhitePiece));
+    board[F][2 - ADJ] =  new Square(F,2 - ADJ,new Pawn(isWhitePiece));
+    board[G][2 - ADJ] =  new Square(G,2 - ADJ,new Pawn(isWhitePiece));
+    board[H][2 - ADJ] =  new Square(H,2 - ADJ,new Pawn(isWhitePiece));
 
     //black pieces
     isWhitePiece = false;
-    board[0][A] = new Square(0,A,new Rook(isWhitePiece));
-    board[0][B] = new Square(0,B,new Knight(isWhitePiece));
-    board[0][C] = new Square(0,C,new Bishop(isWhitePiece));
-    board[0][D] = new Square(0,D,new Queen(isWhitePiece));
-    board[0][E] = new Square(0,E,new King(isWhitePiece));
-    board[0][F] = new Square(0,F,new Bishop(isWhitePiece));
-    board[0][G] = new Square(0,G,new Knight(isWhitePiece));
-    board[0][H] = new Square(0,H,new Rook(isWhitePiece));
 
-    //black pawns
-    board[1][A] = new Square(1,A,new Pawn(isWhitePiece));
-    board[1][B] = new Square(1,B,new Pawn(isWhitePiece));
-    board[1][C] = new Square(1,C,new Pawn(isWhitePiece));
-    board[1][D] = new Square(1,D,new Pawn(isWhitePiece));
-    board[1][E] = new Square(1,E,new Pawn(isWhitePiece));
-    board[1][F] = new Square(1,F,new Pawn(isWhitePiece));
-    board[1][G] = new Square(1,G,new Pawn(isWhitePiece));
-    board[1][H] = new Square(1,H,new Pawn(isWhitePiece));
+    board[A][8 - ADJ] =  new Square(A,8 - ADJ,new Rook(isWhitePiece));
+    board[B][8 - ADJ] =  new Square(B,8 - ADJ,new Knight(isWhitePiece));
+    board[C][8 - ADJ] =  new Square(C,8 - ADJ,new Bishop(isWhitePiece));
+    board[D][8 - ADJ] =  new Square(D,8 - ADJ,new Queen(isWhitePiece));
+    board[E][8 - ADJ] =  new Square(E,8 - ADJ,new King(isWhitePiece));
+    board[F][8 - ADJ] =  new Square(F,8 - ADJ,new Bishop(isWhitePiece));
+    board[G][8 - ADJ] =  new Square(G,8 - ADJ,new Knight(isWhitePiece));
+    board[H][8 - ADJ] =  new Square(H,8 - ADJ,new Rook(isWhitePiece));
+
+    //white pawns
+    board[A][7 - ADJ] =  new Square(A,7 - ADJ,new Pawn(isWhitePiece));
+    board[B][7 - ADJ] =  new Square(B,7 - ADJ,new Pawn(isWhitePiece));
+    board[C][7 - ADJ] =  new Square(C,7 - ADJ,new Pawn(isWhitePiece));
+    board[D][7 - ADJ] =  new Square(D,7 - ADJ,new Pawn(isWhitePiece));
+    board[E][7 - ADJ] =  new Square(E,7 - ADJ,new Pawn(isWhitePiece));
+    board[F][7 - ADJ] =  new Square(F,7 - ADJ,new Pawn(isWhitePiece));
+    board[G][7 - ADJ] =  new Square(G,7 - ADJ,new Pawn(isWhitePiece));
+    board[H][7 - ADJ] =  new Square(H,7 - ADJ,new Pawn(isWhitePiece));
 
     //rest of squares have no piece
     for(int i=2; i < 6; i++){
         for(int j=0; j<8; j++) {
-            board[i][j] = new Square(i, j, NULL);
+            board[j][i] = new Square(j, i, NULL);
         }
     }
     
@@ -73,14 +76,38 @@ string Board::toString() {
     return boardString;
 }
 
-void Board::printBoard() {
+void Board::printBoardBlackTurn() {
     for(int i = 0; i < 8; i++) {
-        cout << "\n---------------\n";
-        for(int j = 0; j < 8; j++) {
-            Square square = * board[i][j];
+        cout << "\n" << string(8 * 3, '-') << "\n";
+        for(int j = 7; j >= 0; j--) {
+            Square square = * board[j][i];
             Piece * p = square.getPiece();
-            if(p != NULL) cout << p->toString() << "|";
-            else cout << " |";
+            if(p != NULL) cout << p->toString() << (p->getIsWhite() ? "W" : "B") << "|";
+            else cout << "  |";
+        }    
+    }
+}
+
+void Board::printBoardWhiteTurn() {
+    for(int i = 7; i >= 0; i--) {
+        cout << "\n" << string(8 * 3, '-') << "\n";
+        for(int j = 0; j < 8; j++) {
+            Square square = * board[j][i];
+            Piece * p = square.getPiece();
+            if(p != NULL) cout << p->toString() << (p->getIsWhite() ? "W" : "B") << "|";
+            else cout << "  |";
         }
     }
+}
+
+
+void Board::movePiece(Move * move) {
+    whiteMove = !whiteMove;
+    square s1 = move->getBeginSquare();
+    square s2 = move->getEndSquare();
+    Piece * pieceToMove = board[s1.x][s1.y]->getPiece();
+    board[s1.x][s1.y]->setPiece(NULL);
+    board[s2.x][s2.y]->setPiece(pieceToMove);
+    whiteMove ? printBoardWhiteTurn() : printBoardBlackTurn();
+    
 }

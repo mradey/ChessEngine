@@ -4,3 +4,4 @@
 #include "pieces/Pawn.h"
 #include "pieces/Queen.h"
 #include "pieces/Rook.h"
+#include "Piece.h"

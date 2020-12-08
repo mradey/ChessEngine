@@ -7,5 +7,4 @@ string Knight::toString() {
     return "N";
 }
 void Knight::findValidMoves(Board * board) {
-    board->printBoard();
 }

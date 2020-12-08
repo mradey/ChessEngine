@@ -7,5 +7,4 @@ string Pawn::toString() {
     return "P";
 }
 void Pawn::findValidMoves(Board * board) {
-    board->printBoard();
 }

@@ -7,5 +7,4 @@ string King::toString() {
     return "K";
 }
 void King::findValidMoves(Board * board) {
-    board->printBoard();
 }

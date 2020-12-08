@@ -7,5 +7,4 @@ string Queen::toString() {
     return "Q";
 }
 void Queen::findValidMoves(Board * board) {
-    board->printBoard();
 }

@@ -1,15 +1,20 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "../include/Move.h"
 #include "../include/Board.h"
 #include "../include/Piece.h"
-#include "../include/pieces/Knight.h"
 using namespace std;
 
 int main()
 {
+    char * inp = new char[6];
     Board * board = new Board();
-    Piece * knight = new Knight(true);
-    knight->findValidMoves(board);
+    board->printBoardWhiteTurn();
+    while(true) {
+        cin.getline(inp, 6);
+        Move * move = new Move(inp);
+        board->movePiece(move);
+    }
     cout << endl;
 }
