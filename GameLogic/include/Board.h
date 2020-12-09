@@ -21,5 +21,6 @@ class Board {
         void printBoardWhiteTurn();
         void printBoardBlackTurn();
         void movePiece(Move * move);
+        void boardToJson(ofstream& file);
 };
 #endif

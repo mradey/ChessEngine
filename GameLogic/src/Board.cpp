@@ -2,6 +2,7 @@
 #include "../include/Square.h"
 #include "../include/Move.h"
 #include "../include/allPieces.h"
+#include <fstream>
 
 Board::Board() {
     resetBoard();
@@ -107,7 +108,27 @@ void Board::movePiece(Move * move) {
     square s2 = move->getEndSquare();
     Piece * pieceToMove = board[s1.x][s1.y]->getPiece();
     board[s1.x][s1.y]->setPiece(NULL);
-    board[s2.x][s2.y]->setPiece(pieceToMove);
-    whiteMove ? printBoardWhiteTurn() : printBoardBlackTurn();
-    
+    board[s2.x][s2.y]->setPiece(pieceToMove);    
+}
+
+void Board::boardToJson(ofstream& file) {
+    file.open("./board.json");
+    file << "{\n";
+    for(int i = 0; i < 8; i++) {
+        for(int j = 0; j < 8; j++) {
+            file << "\t\"" << (char) ('a' + j) << i + 1<< "\":";
+            Square square = * board[j][i];
+            Piece * p = square.getPiece();
+            if(p != NULL) {
+                file << "{\n\t\t\"piece\":\"" << p->toString() << "\",\n\t\t\"color\":\"" << (p->getIsWhite() ? "W" : "B") << "\"\n\t}";
+            }
+            else {
+                file << "null";
+            }
+            if(i!=7 || j!=7) file << ",\n";
+        }    
+    }
+    file << "\n}";
+    file.close();
+    cout << "wrote to json";
 }
