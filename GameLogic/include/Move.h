@@ -1,14 +1,11 @@
 #include <string>
 #include <iostream>
+#include "SquareStruct.h"
 using namespace std;
 
 #ifndef MOVE_INCLUDED
 #define MOVE_INCLUDED
-struct square
-{
-    int x;
-    int y;
-};
+
 class Move {
     private:
         square s1;

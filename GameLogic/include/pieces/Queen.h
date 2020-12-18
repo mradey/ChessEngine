@@ -1,15 +1,17 @@
 #include <iostream>
-#include "../Piece.h"
+#include "./Rook.h"
+#include "./Bishop.h"
+
 using namespace std;
 #ifndef QUEEN_INCLUDED
 #define QUEEN_INCLUDED
 
 class Board;
-class Queen : public Piece {
+class Queen : public Rook, public Bishop {
     public:
-        Queen(bool isWhite);
+        Queen(bool iw, int file, int rank);
         string toString();
-        void findValidMoves(Board * board);
+        int findValidMoves(Board * board);
 };
 
 #endif

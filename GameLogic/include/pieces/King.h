@@ -6,10 +6,12 @@ using namespace std;
 
 class Board;
 class King : public Piece {
+    private:
+        bool hasMoved = false;
     public:
-        King(bool isWhite);
+        King(bool iw, int file, int rank);
         string toString();
-        void findValidMoves(Board * board);
+        int findValidMoves(Board * board);
 };
 
 #endif

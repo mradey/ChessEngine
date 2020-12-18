@@ -6,10 +6,15 @@ using namespace std;
 
 class Board;
 class Pawn : public Piece {
+    private:
+        bool canEnPassant;
     public:
-        Pawn(bool isWhite);
+        Pawn(bool iw, int file, int rank);
         string toString();
-        void findValidMoves(Board * board);
+        int findValidMoves(Board * board);
+        bool hasNotMoved();
+        int getAdvanceableSquares(Board * board, square square);
+        int getAttackingSquares(Board * board, square square);
 };
 
 #endif

@@ -9,6 +9,8 @@
 				"-g",
 				"${workspaceFolder}\\GameLogic\\src\\*.cpp",
 				"${workspaceFolder}\\GameLogic\\src\\pieces\\*.cpp",
+				//"${workspaceFolder}\\GameLogic\\src\\main_game.cpp",
+				
 				"-o",
 				"${workspaceFolder}\\engine.exe"
 			],

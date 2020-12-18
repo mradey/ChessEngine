@@ -5,11 +5,12 @@ using namespace std;
 #define ROOK_INCLUDED
 
 class Board;
-class Rook : public Piece {
+class Rook : virtual public Piece {
     public:
-        Rook(bool isWhite);
+        Rook(bool iw, int file, int rank);
         string toString();
-        void findValidMoves(Board * board);
+        int findValidMoves(Board * board);
+        int movesOnLine(int xDir, int yDir, square square, Board * board);
 };
 
 #endif

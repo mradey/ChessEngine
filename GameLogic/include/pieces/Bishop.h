@@ -5,11 +5,12 @@ using namespace std;
 #define BISHOP_INCLUDED
 
 class Board;
-class Bishop : public Piece {
+class Bishop : virtual public Piece {
     public:
-        Bishop(bool isWhite);
+        Bishop(bool iw, int file, int rank);
         string toString();
-        void findValidMoves(Board * board);
+        int findValidMoves(Board * board);
+        int movesOnDiag(int xDir, int yDir, square square, Board * board);
 };
 
 #endif

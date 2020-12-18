@@ -2,9 +2,14 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-King::King(bool isWhite) : Piece(isWhite) {}
+King::King(bool iw, int file, int rank) : Piece(iw, file, rank) {}
 string King::toString() {
     return "K";
 }
-void King::findValidMoves(Board * board) {
+int King::findValidMoves(Board * board) {
+    square currentSquare = getSquare();
+    int numberAvailableSquares = 0;
+
+
+    return 0;
 }

@@ -9,9 +9,9 @@ class Knight : public Piece {
     private:
         bool white;
     public:
-        Knight(bool isWhite); 
+        Knight(bool iw, int file, int rank); 
         string toString();
-        void findValidMoves(Board * board);
+        int findValidMoves(Board * board);
         bool whiteBool();
 };
 
