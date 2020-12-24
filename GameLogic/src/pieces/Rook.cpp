@@ -2,37 +2,42 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-Rook::Rook(bool iw, int file, int rank) : Piece(iw, file, rank) {}
-string Rook::toString() {
+Rook::Rook(bool iw, square square) : Piece(iw, square) {}
+std::string Rook::toString() {
     return "R";
 }
-int Rook::findValidMoves(Board * board) {
+std::vector<square> Rook::findValidMoves(Board * board) {
     square currentSquare = getSquare();
-    int availableSquares = 0;
+    std::vector<square> validMoves;
+    std::vector<square> squaresOnLine;
     
     //up
-    availableSquares += movesOnLine(0, UP, currentSquare, board);
+    squaresOnLine = movesOnLine(STAY, UP, currentSquare, board);
+    validMoves.insert(validMoves.end(), squaresOnLine.begin(), squaresOnLine.end());
 
     //down
-    availableSquares += movesOnLine(0, DOWN, currentSquare, board);
+    squaresOnLine = movesOnLine(STAY, DOWN, currentSquare, board);
+    validMoves.insert(validMoves.end(), squaresOnLine.begin(), squaresOnLine.end());
 
     //left
-    availableSquares += movesOnLine(LEFT, 0, currentSquare, board);
+    squaresOnLine = movesOnLine(LEFT, STAY, currentSquare, board);
+    validMoves.insert(validMoves.end(), squaresOnLine.begin(), squaresOnLine.end());
 
     //right
-    availableSquares += movesOnLine(RIGHT, 0, currentSquare, board);
+    squaresOnLine = movesOnLine(RIGHT, STAY, currentSquare, board);
+    validMoves.insert(validMoves.end(), squaresOnLine.begin(), squaresOnLine.end());
 
-    return availableSquares;
+    return validMoves;
 }
 
-int Rook::movesOnLine(int xDir, int yDir, square square, Board * board) {
-    int availableSqures = 0;
-    occupation occ = squareIsAttackable(board, square);
+std::vector<square> Rook::movesOnLine(int xDir, int yDir, square currentSquare, Board * board) {
+    std::vector<square> availableSqures;
+    occupation occ = squareIsAttackable(board, currentSquare);
     while(occ == EMPTY_SQUARE) {
-        availableSqures++;
-        square.x += xDir;
-        square.y += yDir;
-        occ = squareIsAttackable(board, square);
+        currentSquare.x += xDir;
+        currentSquare.y += yDir;
+        occ = squareIsAttackable(board, currentSquare);
+        if(occ != OCCUPIED_SAME_COLOR) availableSqures.push_back(currentSquare);
     }
     return availableSqures;
 }

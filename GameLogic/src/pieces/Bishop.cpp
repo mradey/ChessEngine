@@ -2,37 +2,42 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-Bishop::Bishop(bool iw, int file, int rank) : Piece(iw, file, rank) {}
-string Bishop::toString() {
+Bishop::Bishop(bool iw, square square) : Piece(iw, square) {}
+std::string Bishop::toString() {
     return "B";
 }
-int Bishop::findValidMoves(Board * board) {
+std::vector<square> Bishop::findValidMoves(Board * board) {
     square currentSquare = getSquare();
-    int availableSquares = 0;
+    std::vector<square> validMoves;
+    std::vector<square> squaresOnDiag;
     
     //diag right up
-    availableSquares += movesOnDiag(RIGHT, UP, currentSquare, board);
+    squaresOnDiag = movesOnDiag(RIGHT, UP, currentSquare, board);
+    validMoves.insert(validMoves.end(), squaresOnDiag.begin(), squaresOnDiag.end());
 
     //diag right down
-    availableSquares += movesOnDiag(RIGHT, DOWN, currentSquare, board);
+    squaresOnDiag = movesOnDiag(RIGHT, DOWN, currentSquare, board);
+    validMoves.insert(validMoves.end(), squaresOnDiag.begin(), squaresOnDiag.end());
 
     //diag left up
-    availableSquares += movesOnDiag(LEFT, UP, currentSquare, board);
+    squaresOnDiag = movesOnDiag(LEFT, UP, currentSquare, board);
+    validMoves.insert(validMoves.end(), squaresOnDiag.begin(), squaresOnDiag.end());
 
     //diag left down
-    availableSquares += movesOnDiag(LEFT, DOWN, currentSquare, board);
+    squaresOnDiag = movesOnDiag(LEFT, DOWN, currentSquare, board);
+    validMoves.insert(validMoves.end(), squaresOnDiag.begin(), squaresOnDiag.end());
 
-    return availableSquares;
+    return validMoves;
 }
 
-int Bishop::movesOnDiag(int xDir, int yDir, square square, Board * board) {
-    int availableSqures = 0;
-    occupation occ = squareIsAttackable(board, square);
+std::vector<square> Bishop::movesOnDiag(int xDir, int yDir, square currentSquare, Board * board) {
+    std::vector<square> availableSqures;
+    occupation occ = squareIsAttackable(board, currentSquare);
     while(occ == EMPTY_SQUARE) {
-        availableSqures++;
-        square.x += xDir;
-        square.y += yDir;
-        occ = squareIsAttackable(board, square);
+        currentSquare.x += xDir;
+        currentSquare.y += yDir;
+        occ = squareIsAttackable(board, currentSquare);
+        if(occ != OCCUPIED_SAME_COLOR) availableSqures.push_back(currentSquare);
     }
     return availableSqures;
 }

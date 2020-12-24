@@ -1,17 +1,21 @@
-#include <iostream>
 #include "../Piece.h"
-using namespace std;
 #ifndef KING_INCLUDED
 #define KING_INCLUDED
 
 class Board;
 class King : public Piece {
     private:
-        bool hasMoved = false;
+        const short queenside = 2;
+        const short kingside = 6;
     public:
-        King(bool iw, int file, int rank);
-        string toString();
-        int findValidMoves(Board * board);
+        King(bool iw, square square);
+        std::string toString();
+        std::vector<square> findValidMoves(Board * board);
+        std::vector<square> checkRank(Board * board, square square);
+        std::vector<square> checkSurrondingSqures(Board * board, square square);
+        std::vector<square> castlingEligible(Board * board);
+        square checkSquaresBetweenKingAndRook(Board * board, Piece * rook, int direction);
+        
 };
 
 #endif

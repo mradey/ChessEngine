@@ -1,20 +1,22 @@
-#include <iostream>
+#include <vector>
 #include "../Piece.h"
-using namespace std;
 #ifndef PAWN_INCLUDED
 #define PAWN_INCLUDED
 
 class Board;
 class Pawn : public Piece {
     private:
-        bool canEnPassant;
+        const int direction;
     public:
-        Pawn(bool iw, int file, int rank);
-        string toString();
-        int findValidMoves(Board * board);
-        bool hasNotMoved();
-        int getAdvanceableSquares(Board * board, square square);
-        int getAttackingSquares(Board * board, square square);
+        Pawn(bool iw, square square);
+        bool isOnEnPassantSquare() {
+            return getIsWhite() ? getSquare().y == 5 : getSquare().y == 4;
+        }
+        bool canEnPassant(Board * board, square currentSquare);
+        std::string toString();
+        std::vector<square> findValidMoves(Board * board);
+        std::vector<square> getAdvanceableSquares(Board * board, square currentSquare);
+        std::vector<square> getAttackingSquares(Board * board, square currentSquare);
 };
 
 #endif

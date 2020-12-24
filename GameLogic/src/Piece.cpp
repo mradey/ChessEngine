@@ -1,15 +1,14 @@
-#include "../include/Piece.h"
 #include "../include/Board.h"
+#include "../include/Piece.h"
 #include <algorithm>
-#include <sstream>
-#include <iterator>
 #include <iostream>
+#include <iterator>
+#include <sstream>
 
-Piece::Piece(bool iw, int myFile, int myRank) {
+Piece::Piece(bool iw, square square) {
     isWhite = iw;
     isOnBoard = true;
-    rank = myRank;
-    file = myFile;
+    currentSquare = square;
 }
 
 bool Piece::getIsWhite() { return isWhite; };
@@ -22,26 +21,28 @@ bitset<64> Piece::getValidMoves() { return validMoves; }
     A2 = 8, B2 = 9, ... H2 = 15
 */
 void Piece::setValidMove(square square) {
-    int idx = convertChessSquareToBitSetIdx(square.y, square.x); 
+    int idx = convertChessSquareToBitSetIdx(square); 
     validMoves.set(idx);
     validMovesList.push_back(arr.at(idx));
 }
+void Piece::setValidMoves(std::vector<square> validMoves) {
+    for(square sq : validMoves) {
+        setValidMove(sq);
+    }
+}
 
 bool Piece::isValidMove(square square) {
-    return validMoves.test(convertChessSquareToBitSetIdx(square.y, square.x));
+    return validMoves.test(convertChessSquareToBitSetIdx(square));
 }
 
 void Piece::noValidMoves() { validMoves.reset(); }
 
 string Piece::toString() { return "piece"; }
 
-int Piece::findValidMoves(Board * board) {return 0;}
+std::vector<square> Piece::findValidMoves(Board * board) {return std::vector<square>();}
 
 square Piece::getSquare() {
-    square s1;
-    s1.x = file;
-    s1.y = rank;
-    return s1;
+    return currentSquare;
 }
 
 bool Piece::isSameColor(Piece * piece) {
@@ -51,24 +52,25 @@ bool Piece::isSameColor(Piece * piece) {
 
 std::string Piece::getValidMovesAsString(){
     std::ostringstream oss;
-    oss << "['";
+    oss << "[";
     if (!validMovesList.empty())
     {
+    oss << "\"";
     // Convert all but the last element to avoid a trailing ","
     std::copy(validMovesList.begin(), validMovesList.end()-1,
-        std::ostream_iterator<std::string>(oss, "','"));
+        std::ostream_iterator<std::string>(oss, "\",\""));
 
     // Now add the last element with no delimiter
     oss << validMovesList.back();
+    oss << "\"";
     }
-    oss << "']";
+    oss << "]";
     return oss.str();
 
 }
 
 void Piece::setNewSquare(square square) {
-    file = square.x;
-    rank = square.y;
+    currentSquare = square;
 }
 
 occupation Piece::squareIsAttackable(Board * board, square square) {
@@ -76,7 +78,6 @@ occupation Piece::squareIsAttackable(Board * board, square square) {
     board->isOnBoard(square);
 
     if(board->isOnBoard(square) && (piece == NULL || !isSameColor(piece))){
-        setValidMove(square);
         return piece == NULL ? EMPTY_SQUARE : OCCUPIED_DIFFERENT_COLOR;
     } 
     return OCCUPIED_SAME_COLOR;
@@ -85,3 +86,9 @@ occupation Piece::squareIsAttackable(Board * board, square square) {
 void Piece::pieceMoved() {
     hasMoved = true;
 }
+
+std::string Piece::getSquareNotation(square square) {
+    return arr.at(convertChessSquareToBitSetIdx(square));
+}
+
+

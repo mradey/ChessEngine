@@ -2,61 +2,66 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-Pawn::Pawn(bool iw, int file, int rank) : Piece(iw, file, rank) {}
-string Pawn::toString() {
+Pawn::Pawn(bool iw, square square) : Piece(iw, square), direction(iw ? UP : DOWN) {}
+std::string Pawn::toString() {
     return "P";
 }
 
-int Pawn::findValidMoves(Board * board) {
+std::vector<square> Pawn::findValidMoves(Board * board) {
+    std::vector<square> validMoves;
     square currentSquare = getSquare();
-    int advanceableSquares = getAdvanceableSquares(board, currentSquare);
-    int attackingSquares   = getAttackingSquares(board, currentSquare);
-    cout << "can advance " << advanceableSquares << "squares\n";
-    return advanceableSquares + attackingSquares;
+    
+    //get vectors of available squares
+    validMoves = getAdvanceableSquares(board, currentSquare);
+    std::vector<square> attackingSquares   = getAttackingSquares(board, currentSquare);
+    validMoves.insert(validMoves.end(), attackingSquares.begin(), attackingSquares.end());
+    return validMoves;
 }
-int Pawn::getAdvanceableSquares(Board * board, square square) {
+std::vector<square> Pawn::getAdvanceableSquares(Board * board, square currentSquare) {
     //Get pawn direction and if has moved
-    int advanceableSquares = 0;
-    const int direction = -1 + (getIsWhite() * 2);
-    const bool isOnStartingSquare = hasNotMoved();
+    std::vector<square> advanceableSquares;
 
     //Check 1 square ahead
-    square.y += direction;    
-    Piece * piece = board->getPiece(square);
+    currentSquare.y += direction;    
+    Piece * piece = board->getPiece(currentSquare);
     if(piece == NULL) {
-        advanceableSquares++;
-        setValidMove(square);
-        
+        advanceableSquares.push_back(currentSquare);
+
         //check 2 squares ahead if is on starting square 
-        square.y += direction;
-        piece = board->getPiece(square);
-        if(isOnStartingSquare && piece == NULL) {
-            advanceableSquares++;
-            setValidMove(square);
-        }
+        piece = board->getPiece(currentSquare);
+        currentSquare.y += direction;
+        if(!getHasMoved() && piece == NULL) advanceableSquares.push_back(currentSquare);
     }
     return advanceableSquares;
 }
 
-int Pawn::getAttackingSquares(Board * board, square square) {
+std::vector<square> Pawn::getAttackingSquares(Board * board, square currentSquare) {
     //get pawn direction
-    int attackingSquares = 0;
-    square.y += -1 + (getIsWhite() * 2);
-    occupation occ;
+    std::vector<square> attackingSquares;
+    currentSquare.y += direction;
 
     //check if can attack towards a file
-    square.x--;
-
-    attackingSquares += squareIsAttackable(board, square) ? 1 : 0;
+    currentSquare.x += LEFT;
+    if(squareIsAttackable(board, currentSquare) == OCCUPIED_DIFFERENT_COLOR) 
+        attackingSquares.push_back(currentSquare);
 
     //check if can attack towards h file
-    square.x += 2;
-    attackingSquares += squareIsAttackable(board, square) ? 1 : 0;
+    currentSquare.x += 2 * RIGHT;
+    if(squareIsAttackable(board, currentSquare) == OCCUPIED_DIFFERENT_COLOR) 
+        attackingSquares.push_back(currentSquare);
 
-    //NEED TO ADD LOGIC FOR EN PASSANT
+    //check if can en passant
+    if(isOnEnPassantSquare()) {
+        currentSquare.y -= direction;
+        if(canEnPassant(board, currentSquare)) attackingSquares.push_back(currentSquare);
+        currentSquare.x += 2 * LEFT;
+        if(canEnPassant(board, currentSquare)) attackingSquares.push_back(currentSquare);
+    }
     return attackingSquares;
 }
-bool Pawn::hasNotMoved() {
-    return (getSquare().y == 6 && !getIsWhite()) || 
-           (getSquare().y == 1 &&  getIsWhite());
+
+bool Pawn::canEnPassant(Board * board, square currentSquare) {
+    Piece * piece = board->getPiece(currentSquare);
+    return piece->getPieceType() == PAWN && piece->getNumMovesMade() == 1;
 }
+

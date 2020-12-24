@@ -3,7 +3,7 @@
 #include "../include/Move.h"
 #include "../include/allPieces.h"
 #include <fstream>
-
+#include <sstream>
 
 Board::Board() {
     resetBoard();
@@ -13,46 +13,46 @@ void Board::resetBoard() {
     //white pieces
     bool isWhitePiece = true;
 
-    board[A][1-ADJ] =  new Rook    (isWhitePiece,A, 1-ADJ);
-    board[B][1-ADJ] =  new Knight  (isWhitePiece,B, 1-ADJ);
-    board[C][1-ADJ] =  new Bishop  (isWhitePiece,C, 1-ADJ);
-    board[D][1-ADJ] =  new Queen   (isWhitePiece,D, 1-ADJ);
-    board[E][1-ADJ] =  new King    (isWhitePiece,E, 1-ADJ);
-    board[F][1-ADJ] =  new Bishop  (isWhitePiece,F, 1-ADJ);
-    board[G][1-ADJ] =  new Knight  (isWhitePiece,G, 1-ADJ);
-    board[H][1-ADJ] =  new Rook    (isWhitePiece,H, 1-ADJ);
+    board[A][1-ADJ] =  new Rook    (isWhitePiece,{A, 1-ADJ});
+    board[B][1-ADJ] =  new Knight  (isWhitePiece,{B, 1-ADJ});
+    board[C][1-ADJ] =  new Bishop  (isWhitePiece,{C, 1-ADJ});
+    board[D][1-ADJ] =  new Queen   (isWhitePiece,{D, 1-ADJ});
+    board[E][1-ADJ] =  new King    (isWhitePiece,{E, 1-ADJ});
+    board[F][1-ADJ] =  new Bishop  (isWhitePiece,{F, 1-ADJ});
+    board[G][1-ADJ] =  new Knight  (isWhitePiece,{G, 1-ADJ});
+    board[H][1-ADJ] =  new Rook    (isWhitePiece,{H, 1-ADJ});
 
     //white pawns
-    board[A][2-ADJ] =  new Pawn    (isWhitePiece,A, 2-ADJ);
-    board[B][2-ADJ] =  new Pawn    (isWhitePiece,B, 2-ADJ);
-    board[C][2-ADJ] =  new Pawn    (isWhitePiece,C, 2-ADJ);
-    board[D][2-ADJ] =  new Pawn    (isWhitePiece,D, 2-ADJ);
-    board[E][2-ADJ] =  new Pawn    (isWhitePiece,E, 2-ADJ);
-    board[F][2-ADJ] =  new Pawn    (isWhitePiece,F, 2-ADJ);
-    board[G][2-ADJ] =  new Pawn    (isWhitePiece,G, 2-ADJ);
-    board[H][2-ADJ] =  new Pawn    (isWhitePiece,H, 2-ADJ);
+    board[A][2-ADJ] =  new Pawn    (isWhitePiece,{A, 2-ADJ});
+    board[B][2-ADJ] =  new Pawn    (isWhitePiece,{B, 2-ADJ});
+    board[C][2-ADJ] =  new Pawn    (isWhitePiece,{C, 2-ADJ});
+    board[D][2-ADJ] =  new Pawn    (isWhitePiece,{D, 2-ADJ});
+    board[E][2-ADJ] =  new Pawn    (isWhitePiece,{E, 2-ADJ});
+    board[F][2-ADJ] =  new Pawn    (isWhitePiece,{F, 2-ADJ});
+    board[G][2-ADJ] =  new Pawn    (isWhitePiece,{G, 2-ADJ});
+    board[H][2-ADJ] =  new Pawn    (isWhitePiece,{H, 2-ADJ});
 
     //black pieces
     isWhitePiece = false;
 
-    board[A][8-ADJ] =  new Rook    (isWhitePiece,A, 8-ADJ);
-    board[B][8-ADJ] =  new Knight  (isWhitePiece,B, 8-ADJ);
-    board[C][8-ADJ] =  new Bishop  (isWhitePiece,C, 8-ADJ);
-    board[D][8-ADJ] =  new Queen   (isWhitePiece,D, 8-ADJ);
-    board[E][8-ADJ] =  new King    (isWhitePiece,E, 8-ADJ);
-    board[F][8-ADJ] =  new Bishop  (isWhitePiece,F, 8-ADJ);
-    board[G][8-ADJ] =  new Knight  (isWhitePiece,G, 8-ADJ);
-    board[H][8-ADJ] =  new Rook    (isWhitePiece,H, 8-ADJ);
+    board[A][8-ADJ] =  new Rook    (isWhitePiece,{A, 8-ADJ});
+    board[B][8-ADJ] =  new Knight  (isWhitePiece,{B, 8-ADJ});
+    board[C][8-ADJ] =  new Bishop  (isWhitePiece,{C, 8-ADJ});
+    board[D][8-ADJ] =  new Queen   (isWhitePiece,{D, 8-ADJ});
+    board[E][8-ADJ] =  new King    (isWhitePiece,{E, 8-ADJ});
+    board[F][8-ADJ] =  new Bishop  (isWhitePiece,{F, 8-ADJ});
+    board[G][8-ADJ] =  new Knight  (isWhitePiece,{G, 8-ADJ});
+    board[H][8-ADJ] =  new Rook    (isWhitePiece,{H, 8-ADJ});
 
     //white pawns
-    board[A][7-ADJ] =  new Pawn    (isWhitePiece,A, 7-ADJ);
-    board[B][7-ADJ] =  new Pawn    (isWhitePiece,B, 7-ADJ);
-    board[C][7-ADJ] =  new Pawn    (isWhitePiece,C, 7-ADJ);
-    board[D][7-ADJ] =  new Pawn    (isWhitePiece,D, 7-ADJ);
-    board[E][7-ADJ] =  new Pawn    (isWhitePiece,E, 7-ADJ);
-    board[F][7-ADJ] =  new Pawn    (isWhitePiece,F, 7-ADJ);
-    board[G][7-ADJ] =  new Pawn    (isWhitePiece,G, 7-ADJ);
-    board[H][7-ADJ] =  new Pawn    (isWhitePiece,H, 7-ADJ);
+    board[A][7-ADJ] =  new Pawn    (isWhitePiece,{A, 7-ADJ});
+    board[B][7-ADJ] =  new Pawn    (isWhitePiece,{B, 7-ADJ});
+    board[C][7-ADJ] =  new Pawn    (isWhitePiece,{C, 7-ADJ});
+    board[D][7-ADJ] =  new Pawn    (isWhitePiece,{D, 7-ADJ});
+    board[E][7-ADJ] =  new Pawn    (isWhitePiece,{E, 7-ADJ});
+    board[F][7-ADJ] =  new Pawn    (isWhitePiece,{F, 7-ADJ});
+    board[G][7-ADJ] =  new Pawn    (isWhitePiece,{G, 7-ADJ});
+    board[H][7-ADJ] =  new Pawn    (isWhitePiece,{H, 7-ADJ});
 
     //rest of squares have no piece
     for(int i=2; i < 6; i++){
@@ -121,15 +121,17 @@ void Board::movePiece(Move * move) {
 }
 
 void Board::boardToJson(ofstream& file) {
+    Piece * tmpPiece = new Piece(0, {-1,-1});
     file.open("./board.json");
     file << "{\n";
     for(int i = 0; i < 8; i++) {
         for(int j = 0; j < 8; j++) {
-            file << "\t\"" << (char) ('a' + j) << i + 1<< "\":";
-            string newSquare = (char) ('a' + j) + to_string(i + 1);
+            //file << "\t\"" << (char) ('a' + j) << i + 1<< "\":";
             Piece * p = board[j][i];
+            file << "\t\"" << tmpPiece->getSquareNotation({j, i}) << "\":";
             if(p != NULL) {
-                file << "{\n\t\t\"piece\":\"" << p->toString() << "\",\n\t\t\"color\":\"" << (p->getIsWhite() ? "W" : "B") << "\"\n\t}";
+                //file << "{\n\t\t\"piece\":\"" << p->toString() << "\",\n\t\t\"color\":\"" << (p->getIsWhite() ? "W" : "B") << "\"\n\t}";
+                file << getPieceJSON(p);
             }
             else {
                 file << "null";
@@ -142,3 +144,12 @@ void Board::boardToJson(ofstream& file) {
     cout << "wrote to json";
 }
  
+std::string Board::getPieceJSON(Piece * piece) {
+    std::ostringstream s;
+    s << "{\n"  
+      <<    "\t\t\"piece\":\""      << piece->toString()                 << "\",\n"
+      <<    "\t\t\"color\":\""      << (piece->getIsWhite() ? "W" : "B") << "\",\n"
+      <<    "\t\t\"validMoves\":"   << piece->getValidMovesAsString()    << "\n"
+      << "\t}";
+    return s.str();
+}

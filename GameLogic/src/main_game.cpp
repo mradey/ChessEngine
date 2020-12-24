@@ -14,7 +14,7 @@ uint64_t getRookAttackSquares(int space, uint64_t board);
 int main()
 {
     char * inp = new char[6];
-    //ofstream jsonFile;
+    ofstream jsonFile;
     inp = "e7 b3";
     Move * move = new Move(inp);
 
@@ -27,20 +27,12 @@ int main()
 
     Piece * p = board->getPiece(s);
     s.x++;
-    cout << p->findValidMoves(board) << "\n";
-
+    p->setValidMoves(p->findValidMoves(board));
     printHexToBinary(p->getValidMoves().to_ullong());
     cout << "\n\n" << p->getValidMovesAsString();
    
-    // for(int i = 0; i < 8; i++) {
-    //     Piece * p = board->getPiece(s);
-    //     s.x++;
-    //     cout << s.x;
-    //     printHexToBinary(p->getValidMoves().to_ullong());
-        
-    // }
     
-//    board->boardToJson(jsonFile);
+    board->boardToJson(jsonFile);
     // while(true) {
     //     cin.getline(inp, 6);
     //     Move * move = new Move(inp);
