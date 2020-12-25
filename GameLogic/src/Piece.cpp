@@ -1,14 +1,18 @@
 #include "../include/Board.h"
 #include "../include/Piece.h"
+#include "../include/Move.h"
 #include <algorithm>
 #include <iostream>
 #include <iterator>
 #include <sstream>
 
-Piece::Piece(bool iw, square square) {
+Piece::Piece(bool iw, square square, pieceId pieceId, pieceType type) {
     isWhite = iw;
     isOnBoard = true;
     currentSquare = square;
+    id = pieceId;
+    piece = type;
+    
 }
 
 bool Piece::getIsWhite() { return isWhite; };
@@ -83,8 +87,9 @@ occupation Piece::squareIsAttackable(Board * board, square square) {
     return OCCUPIED_SAME_COLOR;
 }
 
-void Piece::pieceMoved() {
-    hasMoved = true;
+void Piece::pieceMoved(Move * move) {
+    setNewSquare(move->getEndSquare());
+    numMovesMade++;
 }
 
 std::string Piece::getSquareNotation(square square) {

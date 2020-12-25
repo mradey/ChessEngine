@@ -1,7 +1,7 @@
-#include <string>
 #include <iostream>
+#include <string>
+#include <unordered_map> 
 #include "SquareStruct.h"
-using namespace std;
 
 #ifndef BOARD_INCLUDED
 #define BOARD_INCLUDED
@@ -20,6 +20,7 @@ class Board {
                     "\t\t\"color\":\"%s\",\n"
                     "\t\t\"validMoves\":\"%s\"\n"
                 "\t}\n";
+        std::unordered_map<short, square> pieceLookup;
     public:
         Board();
         void resetBoard();

@@ -2,7 +2,7 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-Knight::Knight(bool iw, square square) : Piece(iw, square) {}
+Knight::Knight(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type) {}
 std::string Knight::toString() {
     return "N";
 }

@@ -7,14 +7,15 @@
 #ifndef PIECE_INCLUDED
 #define PIECE_INCLUDED
 class Board;
+class Move;
 class Piece {
     private: 
         bool isWhite;
         bool isOnBoard;
         square currentSquare;
         int numMovesMade = 0;
-        bool hasMoved = false;
         pieceType piece;
+        pieceId id;
         std::vector<std::string> validMovesList;
         std::array<std::string, 64> arr = {
             "H1", "G1", "F1", "E1", "D1", "C1", "B1", "A1",
@@ -43,7 +44,7 @@ class Piece {
         std::bitset<64> validMoves;
 
     public:
-        Piece(bool iw, square square);
+        Piece(bool iw, square square, pieceId pieceId, pieceType type);
         const int RIGHT =  1;
         const int UP    =  1;
         const int LEFT  = -1;
@@ -55,14 +56,15 @@ class Piece {
         bool getIsOnBoard();
         bool isValidMove(square square);
         bool isSameColor(Piece * piece);
-        bool getHasMoved() { return hasMoved; }
+        bool getHasMoved() { return numMovesMade > 0; }
         int getNumMovesMade() { return numMovesMade; }
         occupation squareIsAttackable(Board * board, square square);
         pieceType getPieceType() { return piece;} 
+        pieceId getPieceId() { return id;} 
         void setValidMove(square square);
         void noValidMoves();
         void setNewSquare(square square);
-        void pieceMoved();
+        void pieceMoved(Move * move);
         void setValidMoves(std::vector<square> validMoves); 
         square getSquare();
         std::bitset<64> getValidMoves();

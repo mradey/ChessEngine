@@ -8,7 +8,7 @@ class King : public Piece {
         const short queenside = 2;
         const short kingside = 6;
     public:
-        King(bool iw, square square);
+        King(bool iw, square square, pieceId pieceId, pieceType type);
         std::string toString();
         std::vector<square> findValidMoves(Board * board);
         std::vector<square> checkRank(Board * board, square square);

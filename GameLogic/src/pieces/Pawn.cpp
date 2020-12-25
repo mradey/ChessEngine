@@ -2,7 +2,7 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-Pawn::Pawn(bool iw, square square) : Piece(iw, square), direction(iw ? UP : DOWN) {}
+Pawn::Pawn(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type), direction(iw ? UP : DOWN) {}
 std::string Pawn::toString() {
     return "P";
 }

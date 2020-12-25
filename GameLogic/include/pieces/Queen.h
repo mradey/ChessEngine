@@ -7,7 +7,7 @@
 class Board;
 class Queen : public Rook, public Bishop {
     public:
-        Queen(bool iw, square square);
+        Queen(bbool iw, square square, pieceId pieceId, pieceType type);
         std::string toString();
         std::vector<square> findValidMoves(Board * board);
 };

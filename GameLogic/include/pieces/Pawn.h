@@ -8,7 +8,7 @@ class Pawn : public Piece {
     private:
         const int direction;
     public:
-        Pawn(bool iw, square square);
+        Pawn(bool iw, square square, pieceId pieceId, pieceType type);
         bool isOnEnPassantSquare() {
             return getIsWhite() ? getSquare().y == 5 : getSquare().y == 4;
         }

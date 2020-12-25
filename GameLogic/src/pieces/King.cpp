@@ -2,7 +2,7 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-King::King(bool iw, square square) : Piece(iw, square) {}
+King::King(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type) {}
 std::string King::toString() {
     return "K";
 }

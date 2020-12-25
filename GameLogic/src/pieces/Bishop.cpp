@@ -2,7 +2,7 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-Bishop::Bishop(bool iw, square square) : Piece(iw, square) {}
+Bishop::Bishop(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type) {}
 std::string Bishop::toString() {
     return "B";
 }
