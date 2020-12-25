@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Chess Game</title>
+    <style type="text/css">
+
+.chessboard {
+    width: 640px;
+    height: 640px;
+    margin: 20px;
+    border: 25px solid #333;
+}
+.black {
+    float: left;
+    width: 80px;
+    height: 80px;
+    background-color: #999;
+      font-size:50px;
+    text-align:center;
+    display: table-cell;
+    vertical-align:middle;
+}
+.white {
+    float: left;
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    font-size:50px;
+    text-align:center;
+    display: table-cell;
+    vertical-align:middle;
+}
+
+</style>
+
+</head>
+<body>
+    @html.block('body')
+
+</body>
+<script>
+        let i = 0;
+        state = {
+            square1:null,
+            square2:null
+        };
+
+        function sendMove() {
+
+        }
+        var nodes = document.getElementById("chessboard").getElementsByTagName("div");
+        for(let square of nodes) {
+            square.addEventListener('click', (event)=>{
+                console.log(square);
+                if(state.square1 == null) {
+                    state.square1 = square.id;
+                }
+                else {
+                    state.square2 = square.id
+                    sendMove();
+                }
+                console.log(state);
+            });
+        }
+
+</script>
+</html>

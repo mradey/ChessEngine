@@ -1,0 +1,88 @@
+@html.extend('layout',function(model){
+
+	@html.block('body',function(model){
+
+        <div id="chessboard" class="chessboard">
+            <!-- 8th -->
+            <div id='a8' class='white'>@(model.board.a8 != null ? model.map[model.board.a8.color][model.board.a8.piece] : '')</div>
+            <div id='b8' class='black'>@(model.board.b8 != null ? model.map[model.board.b8.color][model.board.b8.piece] : '')</div>
+            <div id='c8' class='white'>@(model.board.c8 != null ? model.map[model.board.c8.color][model.board.c8.piece] : '')</div>
+            <div id='d8' class='black'>@(model.board.d8 != null ? model.map[model.board.d8.color][model.board.d8.piece] : '')</div>
+            <div id='e8' class='white'>@(model.board.e8 != null ? model.map[model.board.e8.color][model.board.e8.piece] : '')</div>
+            <div id='f8' class='black'>@(model.board.f8 != null ? model.map[model.board.f8.color][model.board.f8.piece] : '')</div>
+            <div id='g8' class='white'>@(model.board.g8 != null ? model.map[model.board.g8.color][model.board.g8.piece] : '')</div>
+            <div id='h8' class='black'>@(model.board.h8 != null ? model.map[model.board.h8.color][model.board.h8.piece] : '')</div>
+            
+            <!-- 7th -->
+            <div id='a7' class='black'>@(model.board.a7 != null ? model.map[model.board.a7.color][model.board.a7.piece] : '')</div>
+            <div id='b7' class='white'>@(model.board.b7 != null ? model.map[model.board.b7.color][model.board.b7.piece] : '')</div>
+            <div id='c7' class='black'>@(model.board.c7 != null ? model.map[model.board.c7.color][model.board.c7.piece] : '')</div>
+            <div id='d7' class='white'>@(model.board.d7 != null ? model.map[model.board.d7.color][model.board.d7.piece] : '')</div>
+            <div id='e7' class='black'>@(model.board.e7 != null ? model.map[model.board.e7.color][model.board.e7.piece] : '')</div>
+            <div id='f7' class='white'>@(model.board.f7 != null ? model.map[model.board.f7.color][model.board.f7.piece] : '')</div>
+            <div id='g7' class='black'>@(model.board.g7 != null ? model.map[model.board.g7.color][model.board.g7.piece] : '')</div>
+            <div id='h7' class='white'>@(model.board.h7 != null ? model.map[model.board.h7.color][model.board.h7.piece] : '')</div>
+
+            <!-- 6th -->
+            <div id='a6' class='white'>@(model.board.a6 != null ? model.map[model.board.a6.color][model.board.a6.piece] : '')</div>
+            <div id='b6' class='black'>@(model.board.b6 != null ? model.map[model.board.b6.color][model.board.b6.piece] : '')</div>
+            <div id='c6' class='white'>@(model.board.c6 != null ? model.map[model.board.c6.color][model.board.c6.piece] : '')</div>
+            <div id='d6' class='black'>@(model.board.d6 != null ? model.map[model.board.d6.color][model.board.d6.piece] : '')</div>
+            <div id='e6' class='white'>@(model.board.e6 != null ? model.map[model.board.e6.color][model.board.e6.piece] : '')</div>
+            <div id='f6' class='black'>@(model.board.f6 != null ? model.map[model.board.f6.color][model.board.f6.piece] : '')</div>
+            <div id='g6' class='white'>@(model.board.g6 != null ? model.map[model.board.g6.color][model.board.g6.piece] : '')</div>
+            <div id='h6' class='black'>@(model.board.h6 != null ? model.map[model.board.h6.color][model.board.h6.piece] : '')</div>
+
+            <!-- 5th -->
+            <div id='a5' class='black'>@(model.board.a5 != null ? model.map[model.board.a5.color][model.board.a5.piece] : '')</div>
+            <div id='b5' class='white'>@(model.board.b5 != null ? model.map[model.board.b5.color][model.board.b5.piece] : '')</div>
+            <div id='c5' class='black'>@(model.board.c5 != null ? model.map[model.board.c5.color][model.board.c5.piece] : '')</div>
+            <div id='d5' class='white'>@(model.board.d5 != null ? model.map[model.board.d5.color][model.board.d5.piece] : '')</div>
+            <div id='e5' class='black'>@(model.board.e5 != null ? model.map[model.board.e5.color][model.board.e5.piece] : '')</div>
+            <div id='f5' class='white'>@(model.board.f5 != null ? model.map[model.board.f5.color][model.board.f5.piece] : '')</div>
+            <div id='g5' class='black'>@(model.board.g5 != null ? model.map[model.board.g5.color][model.board.g5.piece] : '')</div>
+            <div id='h5' class='white'>@(model.board.h5 != null ? model.map[model.board.h5.color][model.board.h5.piece] : '')</div>
+
+            <!-- 4th -->
+            <div id='a4' class='white'>@(model.board.a4 != null ? model.map[model.board.a4.color][model.board.a4.piece] : '')</div>
+            <div id='b4' class='black'>@(model.board.b4 != null ? model.map[model.board.b4.color][model.board.b4.piece] : '')</div>
+            <div id='c4' class='white'>@(model.board.c4 != null ? model.map[model.board.c4.color][model.board.c4.piece] : '')</div>
+            <div id='d4' class='black'>@(model.board.d4 != null ? model.map[model.board.d4.color][model.board.d4.piece] : '')</div>
+            <div id='e4' class='white'>@(model.board.e4 != null ? model.map[model.board.e4.color][model.board.e4.piece] : '')</div>
+            <div id='f4' class='black'>@(model.board.f4 != null ? model.map[model.board.f4.color][model.board.f4.piece] : '')</div>
+            <div id='g4' class='white'>@(model.board.g4 != null ? model.map[model.board.g4.color][model.board.g4.piece] : '')</div>
+            <div id='h4' class='black'>@(model.board.h4 != null ? model.map[model.board.h4.color][model.board.h4.piece] : '')</div>
+
+            <!-- 3rd -->
+            <div id='a3' class='black'>@(model.board.a3 != null ? model.map[model.board.a3.color][model.board.a3.piece] : '')</div>
+            <div id='b3' class='white'>@(model.board.b3 != null ? model.map[model.board.b3.color][model.board.b3.piece] : '')</div>
+            <div id='c3' class='black'>@(model.board.c3 != null ? model.map[model.board.c3.color][model.board.c3.piece] : '')</div>
+            <div id='d3' class='white'>@(model.board.d3 != null ? model.map[model.board.d3.color][model.board.d3.piece] : '')</div>
+            <div id='e3' class='black'>@(model.board.e3 != null ? model.map[model.board.e3.color][model.board.e3.piece] : '')</div>
+            <div id='f3' class='white'>@(model.board.f3 != null ? model.map[model.board.f3.color][model.board.f3.piece] : '')</div>
+            <div id='g3' class='black'>@(model.board.g3 != null ? model.map[model.board.g3.color][model.board.g3.piece] : '')</div>
+            <div id='h3' class='white'>@(model.board.h3 != null ? model.map[model.board.h3.color][model.board.h3.piece] : '')</div>
+
+            <!-- 2nd -->
+            <div id='a2' class='white'>@(model.board.a2 != null ? model.map[model.board.a2.color][model.board.a2.piece] : '')</div>
+            <div id='b2' class='black'>@(model.board.b2 != null ? model.map[model.board.b2.color][model.board.b2.piece] : '')</div>
+            <div id='c2' class='white'>@(model.board.c2 != null ? model.map[model.board.c2.color][model.board.c2.piece] : '')</div>
+            <div id='d2' class='black'>@(model.board.d2 != null ? model.map[model.board.d2.color][model.board.d2.piece] : '')</div>
+            <div id='e2' class='white'>@(model.board.e2 != null ? model.map[model.board.e2.color][model.board.e2.piece] : '')</div>
+            <div id='f2' class='black'>@(model.board.f2 != null ? model.map[model.board.f2.color][model.board.f2.piece] : '')</div>
+            <div id='g2' class='white'>@(model.board.g2 != null ? model.map[model.board.g2.color][model.board.g2.piece] : '')</div>
+            <div id='h2' class='black'>@(model.board.h2 != null ? model.map[model.board.h2.color][model.board.h2.piece] : '')</div>
+
+            <!-- 1st -->
+            <div id='a1' class='black'>@(model.board.a1 != null ? model.map[model.board.a1.color][model.board.a1.piece] : '')</div>
+            <div id='b1' class='white'>@(model.board.b1 != null ? model.map[model.board.b1.color][model.board.b1.piece] : '')</div>
+            <div id='c1' class='black'>@(model.board.c1 != null ? model.map[model.board.c1.color][model.board.c1.piece] : '')</div>
+            <div id='d1' class='white'>@(model.board.d1 != null ? model.map[model.board.d1.color][model.board.d1.piece] : '')</div>
+            <div id='e1' class='black'>@(model.board.e1 != null ? model.map[model.board.e1.color][model.board.e1.piece] : '')</div>
+            <div id='f1' class='white'>@(model.board.f1 != null ? model.map[model.board.f1.color][model.board.f1.piece] : '')</div>
+            <div id='g1' class='black'>@(model.board.g1 != null ? model.map[model.board.g1.color][model.board.g1.piece] : '')</div>
+            <div id='h1' class='white'>@(model.board.h1 != null ? model.map[model.board.h1.color][model.board.h1.piece] : '')</div>
+        </div>
+
+    });
+});
