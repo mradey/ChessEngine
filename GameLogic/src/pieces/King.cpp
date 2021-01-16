@@ -3,8 +3,8 @@
 #include "../../include/Board.h"
 
 King::King(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type) {}
-std::string King::toString() {
-    return "K";
+char King::toChar() {
+    return getIsWhite() ? 'K' : 'k';
 }
 std::vector<square> King::findValidMoves(Board * board) {
     square currentSquare = getSquare();

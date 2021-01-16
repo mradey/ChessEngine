@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <unordered_map> 
 #include "SquareStruct.h"
 
@@ -24,15 +25,12 @@ class Board {
     public:
         Board();
         void resetBoard();
-        void resetBoard1();
-        string toString();
+        std::string toFENString();
         void printBoardWhiteTurn();
         void printBoardBlackTurn();
         void movePiece(Move * move);
-        void boardToJson(ofstream& file);
         Piece * getPiece(square square);
         bool isOnBoard(square square);
-        std::string getPieceJSON(Piece * piece);
 
 };
 #endif

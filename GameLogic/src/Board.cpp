@@ -2,7 +2,6 @@
 #include "../include/Square.h"
 #include "../include/Move.h"
 #include "../include/allPieces.h"
-#include <fstream>
 #include <sstream>
 
 Board::Board() {
@@ -105,15 +104,21 @@ bool Board::isOnBoard(square square) {
            square.y < 8 && square.y >= 0;
 }
 
-string Board::toString() {
+std::string Board::toFENString() {
     string boardString;
     for(int i = 0; i < 8; i++) {
         string row;
+        int emptySpquares = 0;
         for(int j = 0; j < 8; j++) {
             Piece * p = board[i][j];
-            row.append(p != NULL ? p->toString() + "|" : "|");
+            if(p == NULL) emptySpquares++;
+            else {
+                if(emptySpquares != 0) boardString.append(to_string(emptySpquares));
+                boardString += p->toChar();
+                emptySpquares = 0;
+            }
         }
-        row.append("\n");
+        row.append("/");
         boardString.append(row);
     }
     return boardString;
@@ -125,7 +130,7 @@ void Board::printBoardBlackTurn() {
         cout << "\n" << string(8 * 3, '-') << "\n";
         for(int j = 7; j >= 0; j--) {
             Piece * p = board[i][j];
-            if(p != NULL) cout << p->toString() << (p->getIsWhite() ? "W" : "B") << "|";
+            if(p != NULL) cout << p->toChar() << (p->getIsWhite() ? "W" : "B") << "|";
             else cout << "  |";
         }    
     }
@@ -136,7 +141,7 @@ void Board::printBoardWhiteTurn() {
         cout << "\n" << string(8 * 3, '-') << "\n";
         for(int j = 0; j < 8; j++) {
             Piece * p = board[j][i];
-            if(p != NULL) cout << p->toString() << (p->getIsWhite() ? "W" : "B") << "|";
+            if(p != NULL) cout << p->toChar() << (p->getIsWhite() ? "W" : "B") << "|";
             else cout << "  |";
         }
     }
@@ -154,36 +159,4 @@ void Board::movePiece(Move * move) {
     board[s2.x][s2.y] = pieceToMove;    
 }
 
-void Board::boardToJson(ofstream& file) {
-    Piece * tmpPiece = new Piece(0, {-1,-1});
-    file.open("./board.json");
-    file << "{\n";
-    for(int i = 0; i < 8; i++) {
-        for(int j = 0; j < 8; j++) {
-            //file << "\t\"" << (char) ('a' + j) << i + 1<< "\":";
-            Piece * p = board[j][i];
-            file << "\t\"" << tmpPiece->getSquareNotation({j, i}) << "\":";
-            if(p != NULL) {
-                //file << "{\n\t\t\"piece\":\"" << p->toString() << "\",\n\t\t\"color\":\"" << (p->getIsWhite() ? "W" : "B") << "\"\n\t}";
-                file << getPieceJSON(p);
-            }
-            else {
-                file << "null";
-            }
-            if(i!=7 || j!=7) file << ",\n";
-        }    
-    }
-    file << "\n}";
-    file.close();
-    cout << "wrote to json";
-}
- 
-std::string Board::getPieceJSON(Piece * piece) {
-    std::ostringstream s;
-    s << "{\n"  
-      <<    "\t\t\"piece\":\""      << piece->toString()                 << "\",\n"
-      <<    "\t\t\"color\":\""      << (piece->getIsWhite() ? "W" : "B") << "\",\n"
-      <<    "\t\t\"validMoves\":"   << piece->getValidMovesAsString()    << "\n"
-      << "\t}";
-    return s.str();
-}
+

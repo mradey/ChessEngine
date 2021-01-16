@@ -3,8 +3,8 @@
 #include "../../include/Board.h"
 
 Knight::Knight(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type) {}
-std::string Knight::toString() {
-    return "N";
+char Knight::toChar() {
+    return getIsWhite() ? 'N' : 'n';
 }
 std::vector<square> Knight::findValidMoves(Board * board) {
     square currentSquare = getSquare();

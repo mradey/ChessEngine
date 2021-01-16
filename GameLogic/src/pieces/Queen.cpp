@@ -2,9 +2,9 @@
 #include "../../include/Piece.h"
 #include "../../include/Board.h"
 
-Queen::Queen(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type) {}
-std::string Queen::toString() {
-    return "Q";
+Queen::Queen(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type), Rook(iw, square, pieceId, type), Bishop(iw, square, pieceId, type) {}
+char Queen::toChar() {
+    return getIsWhite() ? 'Q' : 'q';
 }
 std::vector<square> Queen::findValidMoves(Board * board) {
     std::vector<square> queenMoves = Bishop::findValidMoves(board); 

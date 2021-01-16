@@ -32,7 +32,7 @@ int main()
     cout << "\n\n" << p->getValidMovesAsString();
    
     
-    board->boardToJson(jsonFile);
+    board->toFENString();
     // while(true) {
     //     cin.getline(inp, 6);
     //     Move * move = new Move(inp);

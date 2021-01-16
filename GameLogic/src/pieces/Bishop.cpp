@@ -3,8 +3,8 @@
 #include "../../include/Board.h"
 
 Bishop::Bishop(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type) {}
-std::string Bishop::toString() {
-    return "B";
+char Bishop::toChar() {
+    return getIsWhite() ? 'B' : 'b';
 }
 std::vector<square> Bishop::findValidMoves(Board * board) {
     square currentSquare = getSquare();

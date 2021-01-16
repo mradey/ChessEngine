@@ -13,7 +13,7 @@ class Pawn : public Piece {
             return getIsWhite() ? getSquare().y == 5 : getSquare().y == 4;
         }
         bool canEnPassant(Board * board, square currentSquare);
-        std::string toString();
+        char toChar();
         std::vector<square> findValidMoves(Board * board);
         std::vector<square> getAdvanceableSquares(Board * board, square currentSquare);
         std::vector<square> getAttackingSquares(Board * board, square currentSquare);

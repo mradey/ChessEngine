@@ -41,7 +41,7 @@ bool Piece::isValidMove(square square) {
 
 void Piece::noValidMoves() { validMoves.reset(); }
 
-string Piece::toString() { return "piece"; }
+char Piece::toChar() { return ' '; }
 
 std::vector<square> Piece::findValidMoves(Board * board) {return std::vector<square>();}
 

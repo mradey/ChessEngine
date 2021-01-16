@@ -3,8 +3,8 @@
 #include "../../include/Board.h"
 
 Rook::Rook(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type) {}
-std::string Rook::toString() {
-    return "R";
+char Rook::toChar() {
+    return getIsWhite() ? 'R' : 'r';
 }
 std::vector<square> Rook::findValidMoves(Board * board) {
     square currentSquare = getSquare();

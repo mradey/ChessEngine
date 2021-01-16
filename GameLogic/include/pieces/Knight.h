@@ -6,7 +6,7 @@ class Board;
 class Knight : public Piece {
     public:
         Knight(bool iw, square square, pieceId pieceId, pieceType type); 
-        std::string toString();
+        char toChar();
         std::vector<square> findValidMoves(Board * board);
 };
 

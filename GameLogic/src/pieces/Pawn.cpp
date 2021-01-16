@@ -3,8 +3,8 @@
 #include "../../include/Board.h"
 
 Pawn::Pawn(bool iw, square square, pieceId pieceId, pieceType type) : Piece(iw, square, pieceId, type), direction(iw ? UP : DOWN) {}
-std::string Pawn::toString() {
-    return "P";
+char Pawn::toChar() {
+    return getIsWhite() ? 'P' : 'p';
 }
 
 std::vector<square> Pawn::findValidMoves(Board * board) {

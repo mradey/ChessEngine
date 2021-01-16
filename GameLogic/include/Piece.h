@@ -69,7 +69,7 @@ class Piece {
         square getSquare();
         std::bitset<64> getValidMoves();
         std::string getValidMovesAsString();
-        virtual std::string toString();
+        virtual char toChar();
         virtual std::vector<square> findValidMoves(Board * board);
         std::string getSquareNotation(square square);
 };
